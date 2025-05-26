@@ -1,3 +1,9 @@
+// Left hand
+// A - G - F - E
+
+// Right hand
+// A - C - D (E#) - E - G - A
+
 stack(
   note("<a2 g2 f2 e2>*4").sound("piano"),
   note("<a4@2 c4 d4 e4 c5@2 a4 d4 c4>*8").sound("piano"),
