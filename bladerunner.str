@@ -1,0 +1,60 @@
+// "Blade Runner Dreamscape" @by Cascade
+var cpm = 24;
+
+stack(
+  // Lush evolving pad (sawtooth, built-in)
+  note("[f3 c4 g4][eb3 bb3 f4][ab2 eb3 c4][db3 ab3 eb4]")
+    .slow(16)
+    .sound("sawtooth")
+    .lpf(900)
+    .gain(0.9)
+    .release(4)
+    .decay(1.2)
+    .pan(0.5)
+    .delay(sine.range(0,0.8).slow(12))
+    .mask("<0!8 1!32>")
+  ,
+
+  // Expressive lead (triangle, built-in)
+  note("[c5@2 ~ eb5@2 ~ bb4@2 ~ g4@2 ~]")
+    .slow(8)
+    .sound("triangle")
+    .lpf(1600)
+    .gain(0.5)
+    .delay(0.25)
+    .pan(0.7)
+    .mask("<0!16 1!32>")
+  ,
+
+  // Deep analog bass (sawtooth, built-in)
+  note("[f1 ~ ~ f1 ~ ~ eb1 ~ ~ ab1 ~ ~ db1 ~ ~]")
+    .slow(2)
+    .sound("sawtooth")
+    .lpf(300)
+    .gain(0.7)
+    .release(0.5)
+    .room(0.2)
+    .pan(0.2)
+  ,
+
+  // Cinematic, syncopated beat (RolandTR909, built-in)
+  sound("bd ~ [bd bd] ~ bd ~ [bd bd]")
+    .bank("RolandTR909")
+    .gain(0.22)
+    .room(0.18)
+  ,
+
+  sound("hh ~ [hh hh] ~ [hh ~] ~ ohh")
+    .bank("RolandTR909")
+    .gain(0.13)
+    .crush(7)
+    .pan(0.6)
+  ,
+
+  sound("sd ~ ~ sd")
+    .bank("RolandTR909")
+    .gain(0.13)
+    .pan(0.4)
+)
+
+.cpm(cpm)

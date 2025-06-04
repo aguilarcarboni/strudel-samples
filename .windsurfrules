@@ -1,0 +1,174 @@
+Strudel Examples:
+
+```
+//"Outrun June 25" @by shadesDrawn
+var cpm = 28;
+
+stack(
+
+note(`
+[f3 ab3 g3]
+[eb3 g3 c3]
+[f3 bb3 ab3]
+[eb3 c3 g3 f3]
+`)
+  .slow(4)
+  .euclidRot(4,16,2)
+  .sound("sawtooth")
+  .fm(0)
+  .lpf(800)
+  //.release(2)
+  .decay(0.12)
+  .pan(0.3)
+  .gain(1.0)
+  .delay(sine.range(0,0.75).slow(10))
+  .mask("<0!4 1!500>")
+  //.phaser(1).phasersweep(2000)
+,
+
+note(`
+[f5]
+`)
+  .euclidRot(3,16,10)
+  .sound("sine")
+  .fm(0)
+  .lpf(400)
+  .pan(0.8)
+  .mask("<0!8 1!500>")
+  .postgain(sine.range(0.6,1.6).slow(24))
+,
+
+note(`
+[c5@0.5 f4@0.5 f5@3]
+[eb5@0.5 f5@0.5 bb4@3]
+[db5@0.5 c5@0.5 f4@3]
+[f4@0.5 g4@0.5 bb4 ab4 g4]
+`)
+  .slow(4)
+  .sound("piano")
+  .gain(0.5)
+  .clip(3)
+  .postgain(sine.range(1,0).slow(24))
+  .mask("<0!8 1!500>")
+  .pan(0.65)
+,
+
+note(`
+[f1 ~ ~ f1 ~ ~ f1 ~ ~ f1 ~ ~ f1 ~ ~ f1]
+[db1 ~ ~ db1 ~ ~ db1 ~ ~ eb1 ~ ~ eb1 ~ ~ eb1]
+`)
+  .slow(2)
+  .sound("gm_synth_bass_2:0")
+  .lpf(800)
+  .pan(0.4)
+  .release(0.25)
+  .room(0.2)
+,
+  
+sound("bd!4")
+  .bank("RolandTR909")
+  .gain(0.35)
+  .room(0.15)
+,
+
+sound("~ hh ~ [hh hh] ~ hh ~ hh")
+  .bank("RolandTR909")
+  .gain(0.08)
+  .crush(5)
+,
+
+sound("~ sd ~ [sd ~ ~ sd]")
+  .bank("RolandTR909")
+  .gain("0.15 0.15 0.15 0.15 0.09")
+,
+
+note(`
+[f4 g4 f4 g4 ab4 g4 f4@2]
+[eb4 f4 eb4 f4 c4 db4 eb4@2]
+[f4 g4 f4 g4 bb4 g4 ab4@2]
+[~ eb4 c4 bb3@2 g4@2 f4]
+`)
+  .slow(4)
+  .sound("gm_electric_guitar_clean:4")
+  .lpf(2000)
+  .pan(0.65)
+  .gain(1)
+  .phaser(4).phasersweep(2000)
+  .mask("<0!20 1!12>")
+,
+
+).cpm(cpm)
+```
+
+```
+//"Oleander de Operación Lógica 2024 06 16" @by Ángel Jara
+setcps(143/60/4)
+
+
+  bateria00:
+  s("bd [bd bd - bd], sd(2,4,1), hh*8").color("#939")
+  ._pianoroll({ labels: 1 })
+    // .hush()
+bateria01:
+  s("-!7 [- [sd*12]@3]").gain(rand.range(0.5,0.9)).color("#f39").slow(8)
+  ._pianoroll({ labels: 1, cycles : 8    })
+// .hush()
+
+ElBajo:
+  note("[d3@ a1 a2][a1 e1@2 d1][- cs2 a1 ds1 ][a2 c1@3]").add(note(-0)).s("sawtooth").legato(0.5)
+    .distort(3)
+    .slow(1)
+  .lpf(sine.range("<600!8 400!8 300!8 600!8 800!8 400!8 >","<700!8 800!8 1200!8 1700!8 2400!8 800!8>").slow(2))
+  .lpq(rand.range(4,"<[18 25 36 25 10 20 15 9 32 12 10 20 12 18]!3 [10 25 10 9 10 10 10 10 40 10 32]>")).gain(rand.range(0.5,0.9)).color("#ff9")
+  ._pianoroll({ labels: 1 , vertical: 1, cycles : 1 })
+
+// Am7
+```
+
+```
+// "more 7s" by @yaxu
+
+setcps(0.25)
+samples('github:yaxu/spicule/master')
+
+$: n("2 - 4 - 6 8 9")
+  .s("claus")
+  .s_expand(
+    "4 3 2 1 1 1",
+    "2 2 2".div(3)
+  )
+  .clip(1).speed(2).color("blue")
+  .jux(x => x.rev().speed(0.75).color("green"))
+  .steps(14)
+  ._pianoroll()
+
+$: s("hh hh ~ hh:3 ~ hh:3 ~").steps(7)
+   .room(0.5).sz(2).speed(2)
+   ._pianoroll()
+
+```
+
+```
+//"Oleander de Operación Lógica 2024 06 16" @by Ángel Jara
+setcps(143/60/4)
+
+
+  bateria00:
+  s("bd [bd bd - bd], sd(2,4,1), hh*8").color("#939")
+  ._pianoroll({ labels: 1 })
+    // .hush()
+bateria01:
+  s("-!7 [- [sd*12]@3]").gain(rand.range(0.5,0.9)).color("#f39").slow(8)
+  ._pianoroll({ labels: 1, cycles : 8    })
+// .hush()
+
+ElBajo:
+  note("[d3@ a1 a2][a1 e1@2 d1][- cs2 a1 ds1 ][a2 c1@3]").add(note(-0)).s("sawtooth").legato(0.5)
+    .distort(3)
+    .slow(1)
+  .lpf(sine.range("<600!8 400!8 300!8 600!8 800!8 400!8 >","<700!8 800!8 1200!8 1700!8 2400!8 800!8>").slow(2))
+  .lpq(rand.range(4,"<[18 25 36 25 10 20 15 9 32 12 10 20 12 18]!3 [10 25 10 9 10 10 10 10 40 10 32]>")).gain(rand.range(0.5,0.9)).color("#ff9")
+  ._pianoroll({ labels: 1 , vertical: 1, cycles : 1 })
+
+// Am7
+````
